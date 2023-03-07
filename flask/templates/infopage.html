@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <script>  
+        alert("모든 조건에 일치하는 결과가 없어 일부 조건과 일치하는 숙소를 추천합니다.\n") 
+    </script>
+    {% endif %}
+{% endwith %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="my-data" data-name="{{data}}" data-other="{{data}}">
+    <meta id="my-score" data-name="{{results}}" data-other="{{results}}">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{url_for('static', filename='js/map.js')}}"></script>
+    <script src="{{url_for('static', filename='js/menubar.js')}}"></script>
+    <script src="{{url_for('static', filename='js/description.js')}}"></script>
+    <script src="{{url_for('static', filename='js/getUserParams.js')}}"></script>
+    <script src="{{url_for('static', filename='js/get_score.js')}}"></script>
+    <script src="{{url_for('static', filename='js/get_recommend.js')}}"></script>
+    <script src="{{url_for('static', filename='js/get_similar.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='infopage_css/infopage.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='infopage_css/recommend_info.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='infopage_css/menubar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='infopage_css/filter.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='infopage_img/favicon.ico')}}" type="image/x-icon">
+    <title>우주공감</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  
+    <div class="container" style="height: auto;">
+        <div class="header">
+            <span class="menubar">
+                <ul style="margin:25ppx;">
+                    <li><a href="{{ url_for('index') }}" class="home">home</a></li>
+                    <li><a href="#" class="about">about</a></li>
+                    <li><a href="#" class="contact">contact</a></li>
+                    <div class="menuUnderline"></div>
+                </ul>
+            </span>
+            <img src="{{ url_for('static', filename='infopage_img/koreaQuality.png')}}" style="position: relative; top: 50px; z-index: 1;" width="120" height="70">           
+        </div>          
+
+        <div class="main" style="position: relative; top: 25px;">
+           <ul>
+                <div style="text-align:center">                 
+                  <h1 id="hotel-name" style="text-align: center;font-weight:bold">{{results.get('name').split('[')[0]}}</h1></img>
+                  <h id="hotel-summary" style="font-size:20px">{{results.get('summary')}}</h>
+                </div>
+
+                <div class="label" style="position: relative; top: 30px;">
+                <div>
+                    <img id="hotel-img" width="500" height="300" target="_blank" src="{{results.get('src')}}"/>
+                    <br>
+                    
+                </div>
+
+                <br>
+                <div style="text-align:left">
+                <h style="font-weight:bold;">주소: </h><h id="hotel-addr">{{results.get('address')}}</h><br>
+                <div style="position: relative; top: 5px;"><h style="font-weight:bold;">전화번호: </h><h id="hotel-num">{{results.get('phoneNumber')}}</h><br></div>
+                <div style="position: relative; top: 10px;"><a style="font-weight:bold" id="hotel-url" href="{{results.get('infoUrl')}}" target="_blank">상세보기</a><br></div>
+              </div>
+                <p style="position: relative; top: 30px; text-align:left;">
+                  <img style="position: relative; top: -20px;" src="../static/infopage_img/wing.png" width="30px" height="30px">  
+                  <h id="hotel-info">{{results.get('info')}}</h>
+                  <br>
+                </p>
+                <!-- <h style=font-weight:bold><br><br>친환경적 요소</h>
+                    <br><br>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" >
+                  <div class="btn-group mr-2" role="group" aria-label="First group" style="position:absloute; left:138px">
+                    <button id="a1" type="button" style=background-color:rgb(160,208,151) class="btn btn-secondary"><h style=font-size:14px>풍력</h></button>
+                    <button id="a2" type="button" style=background-color:white class="btn btn-secondary"><h style=font-size:14px;color:rgb(160,208,151)>태양열</h></button>
+                    <button id="a3" type="button" style=background-color:white class="btn btn-secondary"><h style=font-size:14px;color:rgb(160,208,151)>어메니티</h></button>
+                    <button id="a4" type="button" style=background-color:white class="btn btn-secondary"><h style=font-size:14px;color:rgb(160,208,151)>일회용기 미사용</h></button>
+                  </div>
+                </div> -->
+                <br><br>
+                <h5 style=font-weight:bold>열린 관광 요소</h5>
+
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"></div>
+                  <div class="btn-group mr-2" role="group" aria-label="First group" style="position:absloute">
+                    
+                    <img id="b1" title="장애인 화장실" src="../static/열린관광이미지/장애인화장실F.png" width="50px" height="50px">
+                    <img id="b2" title="장애인용 엘리베이터" src="../static/열린관광이미지/장애인용엘리베이터F.png" width="50px" height="50px">
+                    <img id="b3" title="장애인 전용 주차구역" src="../static/열린관광이미지/장애인전용주차구역F.png" width="50px" height="50px">
+                    <img id="b4" title="주출입구 단차없음" src="../static/열린관광이미지/주출입구단차없음F.png" width="50px" height="50px">
+                    <img id="b5" title="지하철 접근가능" src="../static/열린관광이미지/지하철접근가능F.png" width="50px" height="50px">
+                    <img id="b6" title="저상버스 접근가능" src="../static/열린관광이미지/저상버스접근가능F.png" width="50px" height="50px">
+                    <img id="b7" title="휠체어 대여" src="../static/열린관광이미지/휠체어대여F.png" width="50px" height="50px">
+                    <img id="b8" title="시각장애인 편의서비스" src="../static/열린관광이미지/시각장애인편의서비스F.png" width="50px" height="50px">
+                    <img id="b9" title="청각장애인 편의서비스" src="../static/열린관광이미지/청각장애인편의서비스F.png" width="50px" height="50px">
+                    <img id="b10" title="수유실" src="../static/열린관광이미지/수유실F.png" width="50px" height="50px">
+                    <img id="b11" title="장애인 객실" src="../static/열린관광이미지/장애인객실F.png" width="50px" height="50px">
+                    <img id="b12" title="유모차 대여" src="../static/열린관광이미지/유모차대여F.png" width="50px" height="50px">
+                    </div>
+                  </div>
+                  <br><br>
+
+                  <script>
+              var Data = $('#my-data').data();
+              Data = Data.other.replaceAll('\'','\"')
+              Data = JSON.parse(Data)
+
+              if(Data.help.indexOf("장애인 화장실") != -1)
+                {
+                  $("#b1").attr("src","../static/열린관광이미지/장애인화장실T.png");
+                }
+                else
+                {
+                  $("#b1").attr("src","../static/열린관광이미지/장애인화장실F.png");
+                }
+                
+                if(Data.help.indexOf("장애인용 엘리베이터") != -1)
+                {
+                  $("#b2").attr("src","../static/열린관광이미지/장애인용엘리베이터T.png");
+                }
+                else
+                {
+                  $("#b2").attr("src","../static/열린관광이미지/장애인용엘리베이터F.png");
+                }
+
+                if(Data.help.indexOf("장애인 전용 주차구역") != -1)
+                {
+                  $("#b3").attr("src","../static/열린관광이미지/장애인전용주차구역T.png");
+                }
+                else
+                {
+                  $("#b3").attr("src","../static/열린관광이미지/장애인전용주차구역F.png");
+                }
+
+                if(Data.help.indexOf("주출입구 단차없음") != -1)
+                {
+                  $("#b4").attr("src","../static/열린관광이미지/주출입구단차없음T.png");
+                }
+                else
+                {
+                  $("#b4").attr("src","../static/열린관광이미지/주출입구단차없음F.png");
+                }
+
+                if(Data.help.indexOf("지하철 접근가능") != -1)
+                {
+                  $("#b5").attr("src","../static/열린관광이미지/지하철접근가능T.png");
+                }
+                else
+                {
+                  $("#b5").attr("src","../static/열린관광이미지/지하철접근가능F.png");
+                }
+
+                if(Data.help.indexOf("저상버스 접근가능") != -1)
+                {
+                  $("#b6").attr("src","../static/열린관광이미지/저상버스접근가능T.png");
+                }
+                else
+                {
+                  $("#b6").attr("src","../static/열린관광이미지/저상버스접근가능F.png");
+                }
+
+                if(Data.help.indexOf("휠체어 대여") != -1)
+                {
+                  $("#b7").attr("src","../static/열린관광이미지/휠체어대여T.png");
+                }
+                else
+                {
+                  $("#b7").attr("src","../static/열린관광이미지/휠체어대여F.png");
+                }
+
+                if(Data.help.indexOf("시각장애인 편의서비스") != -1)
+                {
+                  $("#b8").attr("src","../static/열린관광이미지/시각장애인편의서비스T.png");
+                }
+                else
+                {
+                  $("#b8").attr("src","../static/열린관광이미지/시각장애인편의서비스F.png");
+                }
+
+                if(Data.help.indexOf("청각장애인 편의서비스") != -1)
+                {
+                  $("#b9").attr("src","../static/열린관광이미지/청각장애인편의서비스T.png");
+                }
+                else
+                {
+                  $("#b9").attr("src","../static/열린관광이미지/청각장애인편의서비스F.png");
+                }
+
+                if(Data.help.indexOf("수유실") != -1)
+                {
+                  $("#b10").attr("src","../static/열린관광이미지/수유실T.png");
+                }
+                else
+                {
+                  $("#b10").attr("src","../static/열린관광이미지/수유실F.png");
+                }
+
+                if(Data.help.indexOf("장애인 객실") != -1)
+                {
+                  $("#b11").attr("src","../static/열린관광이미지/장애인객실T.png");
+                }
+                else
+                {
+                  $("#b11").attr("src","../static/열린관광이미지/장애인객실F.png");
+                }
+
+                if(Data.help.indexOf("유모차 대여") != -1)
+                {
+                  $("#b12").attr("src","../static/열린관광이미지/유모차대여T.png");
+                }
+                else
+                {
+                  $("#b12").attr("src","../static/열린관광이미지/유모차대여F.png");
+                }
+
+                  </script>
+                <div class="compare-frame" style="position:relative; width: 587px; height: 350px; top: 15px;" >
+                  <h4 style="position:relative; top: 10px;text-align:center; font-weight:bold">고객 리뷰 주요 키워드</h4>
+                  <img id="wordcloudSrc" width="470" height="250" style="position:relative; top:25px; left:62px" src="https://fluffyword.s3.ap-northeast-2.amazonaws.com/숙소별+리뷰+워드클라우드/(주)척산온천휴양촌.jpg" onerror="sendError();">
+
+                </div>
+                <script>
+                  var Data = $('#my-data').data();
+                  Data = Data.other.replaceAll('\'','\"')
+                  Data = JSON.parse(Data)
+                  
+                  url = "https://fluffyword.s3.ap-northeast-2.amazonaws.com/숙소별+리뷰+워드클라우드/"+Data.name.split('[')[0].trimRight()+".jpg"
+                  $("#wordcloudSrc").attr("src", url);
+                  
+                  function sendError() {
+                    $("#wordcloudSrc").attr("src", "{{ url_for('static', filename='infopage_img/sorry.png')}}");
+
+                    }
+                </script>
+
+                <br><br><h4 style="font-weight:bold; text-align:center">유사한 품질인증 숙소 더 알아보기</h4>
+                <div style="position: relative; top: 10px;">
+                    <div class="card-columns" style="height: 434px">
+                        <div class="card" style="width: 280px; height: 390px;">
+                          <img id="similar1-img" height="185.5" width="278" class="card-img-top"  src="{{ url_for('static', filename='infopage_img/1.jpg')}}"  alt="Card image cap">
+                          <div class="card-body">
+                            <h5 id="similar1-name" class="card-title" style="text-align:center; font-weight:bold; font-size: 18px;">유사숙소1</h5>
+                              <!-- <img src="https://raw.githubusercontent.com/Jihun0224/KTO/master/flask/static/infopage_img/star.png">-->
+                            <div style="position: relative; top: 5px;">
+                              <h class="card-text" style="font-size: 14px; font-weight:bold">주소: </h><h id="similar1-addr">none</h><br>
+                              <h class="card-text" style="font-size: 14px; font-weight:bold">전화번호: </h><h id="similar1-num">none</h><br>
+                              <a id="similar1-url" href="" class="card-text" style="font-size: 14px; font-weight:bold;">상세보기</a>
+                            </div>
+
+                          </div>
+                    </div>
+                    <div class="card-columns" >
+                        <div class="card" style="width: 280px; margin-left: 100px;height: 390px;">
+                          <img id="similar2-img" height="185.5" width="278" class="card-img-top"  src="{{ url_for('static', filename='infopage_img/1.jpg')}}"  alt="Card image cap">
+                          <div class="card-body">
+                            <h5 id="similar2-name" class="card-title" style="text-align:center; font-weight:bold; font-size: 18px;">유사숙소2</h5>
+                              <!-- <img src="https://raw.githubusercontent.com/Jihun0224/KTO/master/flask/static/infopage_img/star.png">-->
+                            <div style="position: relative; top: 10px;">
+                              <h class="card-text" style="font-size: 14px; font-weight:bold">주소: </h><h id="similar2-addr">none</h><br>
+                              <h class="card-text" style="font-size: 14px; font-weight:bold">전화번호: </h><h id="similar2-num">none</h><br>
+                              <a id="similar2-url" href= "" class="card-text" style="font-size: 14px; font-weight:bold;" target="_blank">상세보기</a>
+                            </div>
+                          </div>
+                        </div>
+                </div>           
+                
+            </ul>
+            
+              
+        </div>
+        
+        
+        <script>          
+          var Data = $('#my-data').data();
+          Data = Data.other.replaceAll('\'','\"')
+          Data = JSON.parse(Data)
+          get_similar(Data.id, Data.address.split(' ')[0], Data.name)
+        </script>
+        <div class="mapinfo" id="map" style="width:495px; height:500px; margin-left: 30px;margin-bottom: 30px;">
+          <div> 
+          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=37531866be664df9b26e2c034430dfc5"></script>
+            <script>
+              var Data = $('#my-data').data();
+              Data = Data.other.replaceAll('\'','\"')
+              Data = JSON.parse(Data)
+                var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(Data.y, Data.x), //지도의 중심좌표.
+                    level: 5 //지도의 레벨(확대, 축소 정도)
+                };
+                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                Initialization(map);
+                displayMarker();
+            </script>
+            </div> 
+            <div class="markerFilter" style="background-color: rgba(255, 255, 255, 0.75); height: 80px;">
+              <div class="filterButtonBox">
+                <button class="filterBtn filterhover" onclick=filterBtn(0)>
+                  <img class="filterImg" src="{{ url_for('static', filename='infopage_img/four-dots.svg')}}" width="25px" height="25px">
+                  <p>전체</p>
+                </button>
+                <button class="filterBtn filterhover" onclick=filterBtn(1)>
+                  <img class="filterImg" src="{{ url_for('static', filename='infopage_img/hanok.svg')}}" width="25px" height="25px">
+                  <p>한옥</p>
+                </button>
+                <button class="filterBtn filterhover" onclick=filterBtn(2)> 
+                  <img class="filterImg" src="{{ url_for('static', filename='infopage_img/hotel.svg')}}" width="25px" height="25px">
+                  <p>호텔</p>
+                </button>
+                <button class="filterBtn filterhover" onclick=filterBtn(3)>
+                  <img class="filterImg" src="{{ url_for('static', filename='infopage_img/bb.svg')}}" width="25px" height="25px">
+                  <p>민박</p>
+                </button>
+              </div>
+            </div>
+        </div>
+        
+        <div class="compare-frame" style="position:relative; margin-left:30px; top: 20px;" >
+          <canvas id="myChart" style="z-index:2; width: 2px; height: 1px; position: relative; top: 25px; right: 120px;"></canvas>
+          <canvas id="myChart_2" style="width: 2px; height: 1px; position: relative; top: -221px; left: 130px;"></canvas>
+
+          <script>
+            var Data = $('#my-data').data();
+            Data = Data.other.replaceAll('\'','\"')
+            Data = JSON.parse(Data)
+            get_score(Data.name.split('[')[0].trim())
+         </script>
+        </div>
+
+        <script>
+          var Data = $('#my-data').data();
+          Data = Data.other.replaceAll('\'','\"')
+          Data = JSON.parse(Data)
+          var address = Data.address.split(" ")[0]+" "+Data.address.split(" ")[1]
+          get_recommend(address)
+
+        </script>
+
+        
+        <div class="blog-card" style="position: relative; left: 30px; top: 30px;">
+          <div class="meta">
+            <div class="photo" id="firstCardImg"style="background-image: url(http://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=b30c4f25-1c3c-4bc6-a51c-9a61f297c124)"></div>
+
+          </div>
+          <div class="description">
+              <h1 id ="firstCardTitle" style=
+                                            "overflow: hidden; 
+                                            text-overflow: ellipsis; 
+                                            display: -webkit-box; 
+                                            -webkit-line-clamp: 1 ; 
+                                            -webkit-box-orient: vertical; 
+                                            word-wrap:break-word; 
+                                            line-height: 1.2em; 
+                                            height: 1.2em;">Name</h1>
+              <h2 id="firstCardAddress">Address</h2>
+              <p id="firstCardInfo" style=
+                                          "overflow: hidden; 
+                                          text-overflow: ellipsis; 
+                                          display: -webkit-box; 
+                                          -webkit-line-clamp: 7 ; 
+                                          -webkit-box-orient: vertical; 
+                                          word-wrap:break-word; 
+                                          line-height: 1.2em; 
+                                          height: 8.4em;">
+                Info
+              </p>
+              </p>
+               <p class="read-more">
+              <a id="firstCardUrl" href="" target="_blank">내용 더보기</a>
+            </p>
+          </div>
+        </div>
+        
+        <div class="blog-card" style="position: relative; left: 625px; top: 30px; width: 600px; height: 277px;">
+          <div class="meta">
+            <div class="photo" id="thirdCardImg"style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=806d3a5c-f4bf-4ad3-8c52-59ae5a988689)"></div>
+        
+          </div>
+          <div class="description" style="height: 287px;">
+              <h1 id ="thirdCardTitle"style=
+                                      "overflow: hidden; 
+                                      text-overflow: ellipsis; 
+                                      display: -webkit-box; 
+                                      -webkit-line-clamp: 1 ; 
+                                      -webkit-box-orient: vertical; 
+                                      word-wrap:break-word; 
+                                      line-height: 1.2em; 
+                                      height: 1.2em;">>Name</h1>
+              <h2 id="thirdCardAddress">Address</h2>
+              <p id="thirdCardInfo" style=
+                                          "overflow: hidden; 
+                                          text-overflow: ellipsis; 
+                                          display: -webkit-box; 
+                                          -webkit-line-clamp: 7 ; 
+                                          -webkit-box-orient: vertical; 
+                                          word-wrap:break-word; 
+                                          line-height: 1.2em; 
+                                          height: 8.4em;">
+                Info
+              </p>
+              </p>
+               <p class="read-more">
+              <a id="thirdCardUrl" href="https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=36f54304-e9a8-4615-9226-eb749bf6ce75&big_category=A01&mid_category=A0101&big_area=6">내용 더보기</a>
+            </p>
+          </div>
+        </div>
+      
+      
+        <div class="review">
+          <div class="blog-card alt" style="position: relative; left: 328px; top: 30px; width: 600px; height: 277px;">
+            <div class="meta">
+              <div class="photo" id="SecondCardImg"style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=6c84bfd1-89cd-419f-a669-535e6cb60813)"></div>
+            </div>
+            <div class="description" style="height: 287px;">
+              <h1 id ="SecondCardTitle"style=
+                                "overflow: hidden; 
+                                text-overflow: ellipsis; 
+                                display: -webkit-box; 
+                                -webkit-line-clamp: 1 ; 
+                                -webkit-box-orient: vertical; 
+                                word-wrap:break-word; 
+                                line-height: 1.2em; 
+                                height: 1.2em;">>Name</h1>
+              <h2 id="SecondCardAddress">Address</h2>
+              <p id="SecondCardInfo" style=
+                                          "overflow: hidden; 
+                                          text-overflow: ellipsis; 
+                                          display: -webkit-box; 
+                                          -webkit-line-clamp: 7 ; 
+                                          -webkit-box-orient: vertical; 
+                                          word-wrap:break-word; 
+                                          line-height: 1.2em; 
+                                          height: 8.4em;">
+                Info
+              </p>
+  
+              <p class="read-more">
+                <a id="SecondCardUrl"href="https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=98763dd6-119d-4e32-910e-a40652334bda&big_category=A01&mid_category=A0101&big_area=6">내용 더보기</a>
+              </p>
+            </div>
+          </div>
+          <br>
+          <br>
+          
+        
+        
+
+  
+  <br>
+  <br>
+  
+</body>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="shortcut icon" href="{{url_for('static', filename='infopage_img/favicon.ico')}}" type="image/x-icon">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{url_for('static', filename='main__css/main_info.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='main__css/main_image.css')}}">
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="{{url_for('static', filename='js/getUserParams.js')}}"></script>
+
+        <meta property="og:url" content="http://tour.bigleader.net/">
+        <meta property="og:title" content="우주공감">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://tour-bigleader.s3.ap-northeast-2.amazonaws.com/openGraph.png">
+        <meta property="og:description" content="자, 이제 주인공이 되어 떠나 볼까요?">
+
+        <title>우주공감</title>
+    </head>
+    <body id="main__body">
+        
+        <div id="wrap">
+            <main>
+                <section>
+                    <article>
+                        <h2>asdasdasd</h2>
+                        <p>This is iptsome descrion text for this panel.</p>
+                    </article>
+                </section>
+                <section>
+                    <article>
+                        <h2>생태 관광</h2>
+                        <p>아름다운 자연과 즐거운 체험이 있는 생태테마여행</p>
+                    </article>
+                </section>
+                <section>
+                    <article>
+                        <h2>여행의 가치</h2>
+                        <p>일탈, 휴식, 재미, 누군가에겐 의미를 더하는 여행</p>
+                    </article>
+                </section>
+                <section>
+                    <article>
+                        <h2>한옥에서의 일박</h2>
+                        <p>한국 고유의 전통문화를 체험할 수 있는 한옥 숙박시설</p>
+                    </article>
+                </section>
+                <section>
+                    <article>
+                        <h2>Panel Title</h2>
+                        <p>This is iptsome descrion text for this panel.</p>
+                    </article>
+                </section>
+            </main>
+        </div>
+
+
+        
+        <div class="info" style="position: relative; top: -125px;">
+            <img src="{{ url_for('static', filename='main_img/bigleader.png')}}" style="position:relative; left: -160px;" width="150" height="70"><br>
+            <img src="{{ url_for('static', filename='main_img/KTO.png')}}" style="position:relative; top: -65px; left: 20px;" width="170" height="70"><br>
+            <img src="{{ url_for('static', filename='main_img/국립공원공단.png')}}" style="position:relative; top: -150px; left: 190px;" width="170" height="90"><br>
+            <img src="{{ url_for('static', filename='main_img/우주공감.png')}}" width="350" height="350" style="position:relative; top: -130px;"><br>
+            <h style="font-weight:bold; color: #002545; position:relative; top: -100px;">우주공감</h><h style="position:relative; top: -100px;">은  한국관광품질인증제가 보장하는 관광시설을 바탕으로 만들어진 서비스입니다.<br>
+                여행자가 생각하는 가치 있는 여행을 중심으로 딱 맞는, 잊을 수 없는 경험을 선사해 드립니다.<br>
+                우주공감이 그려나가는 세상 속에서</h>
+                <h style="font-weight:bold; color: #002545; position:relative; top: -100px;">우리가 주인공이 되어 공감하는 여행</h><h style="position:relative; top: -100px;">을 만들어 보세요.</h>
+        </div>
+
+        
+        <div class="input">
+            <h1 class="label" style="font-size: 30px; width:500px; position: relative; top: -100px;">자, 이제 주인공이 되어 떠나 볼까요?</h1>  
+
+            <div class="input_group">
+                <!-- <h1 class=label>지역선택(도 단위, 예: 강원도)</h1> -->
+                <div class="wrap">
+                    <link rel="stylesheet" href="{{url_for('static', filename='main__css/paldo_select.css')}}">
+                    <select class="selectbox" id="type__paldo">
+                        <option>지역은?</option>
+                        <option value="서울특">서울</option>
+                        <option value="부산광">부산</option>
+                        <option value="대구광">대구</option> 
+                        <option value="인천광">인천</option>
+                        <option value="광주광">광주</option>
+                        <option value="대전광">대전</option>
+                        <option value="울산광">울산</option>
+                        <option value="세종특">세종</option>
+                        <option value="경기도">경기</option>
+                        <option value="강원도">강원</option>
+                        <option value="충청북도">충북</option>
+                        <option value="충청남도">충남</option>
+                        <option value="전라북도">전북</option>
+                        <option value="전라남도">전남</option>
+                        <option value="경상북도">경북</option>
+                        <option value="경상남도">경남</option>
+                        <option value="제주">제주</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="wrap">
+                <select class="selectbox" id="type__accommodation">
+                    <option>어디로?</option>
+                    <option value="1">한옥</option>
+                    <option value="2">호텔</option>
+                    <option value="3">민박</option> 
+
+                </select>
+            </div>
+            <div class="wrap">
+                <select class="selectbox" id="type__people">
+                    <option>누구와 함께?</option>
+                    <option value="나홀로">나홀로</option>
+                    <option value="가족">가족</option>
+                    <option value="친구">친구</option>
+                    <option value="연인">연인</option>
+                    <option value="반려견">반려견 동반</option>
+                </select>
+
+            </div>
+        </div>
+                <!-- <h1 class=label>지역선택(도 단위, 예: 강원도)</h1> -->
+            
+        </div>
+
+        <div class="input_group">
+            <form class="frame" >
+            <div class="left-box">
+                <label class="container"><input type="checkbox" id="value_" value="도심">활기가 넘치는 도시로<span class="checkmark"></span></label>
+                <label class="container"><input type="checkbox" id="value_" value="자연">자연 속에서 힐링을<span class="checkmark"></span></label>
+                <label class="container"><input type="checkbox" id="value_" value="바다">파도 소리를 따라<span class="checkmark"></span></label>
+            </div>
+            <div class="right-box">
+                <label class="container"><input type="checkbox" id="value_" value="맛집">금강산도 식후경<span class="checkmark"></span></label>
+                <label class="container"><input type="checkbox" id="value_" value="놀거리">노는 게 제일 좋아요<span class="checkmark"></span></label>
+                <label class="container"><input type="checkbox" id="value_" value="문화">색다른 경험이 있는 곳으로<span class="checkmark"></span></label>
+               
+            </div>
+        </div>
+        <br>
+        <link rel="stylesheet" href="{{url_for('static', filename='main__css/main_button.css')}}">
+    <a class="cta">
+    <span type="button" id ="post_params"onclick=getUserParams()>결과 보기</span>
+    <svg width="13px" height="10px" viewBox="0 0 13 10">
+      <path d="M1,5 L11,5"></path>
+      <polyline points="8 1 12 5 8 9"></polyline>
+    </svg>
+    </a>     
+    <br>
+    </body>
+</html>

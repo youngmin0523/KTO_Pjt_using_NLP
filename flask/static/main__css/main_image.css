@@ -1,0 +1,310 @@
+body{overflow-x: hidden;}
+
+#wrap * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#wrap body {
+  width: 100%;
+  height: 100%;
+  font-family: "Georgia", serif;
+  font-size: 16px;
+  line-height: 1.4;
+  background-color: black;
+}
+
+#wrap main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+@media (min-width: 630px) {
+  #wrap main {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 130%;
+    margin-left: -15%;
+  }
+}
+
+#wrap main section:not(:first-child):not(:last-child):hover {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+#wrap main section:not(:first-child):not(:last-child):hover:after {
+  opacity: .8;
+}
+
+#wrap main section:not(:first-child):not(:last-child):hover article {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: opacity .2s .2s,
+ -webkit-transform .2s .2s;
+  transition: opacity .2s .2s,
+ -webkit-transform .2s .2s;
+  transition: opacity .2s .2s,
+ transform .2s .2s;
+  transition: opacity .2s .2s,
+ transform .2s .2s,
+ -webkit-transform .2s .2s;
+}
+
+@media (min-width: 630px) {
+  #wrap main section:not(:first-child):not(:last-child):hover article {
+    -webkit-transform: translateY(0) skewX(-15deg);
+            transform: translateY(0) skewX(-15deg);
+  }
+}
+
+#wrap section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: 20vh;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-transition: flex-grow .2s,
+ opacity .2s,
+ -webkit-box-flex .2s;
+  transition: flex-grow .2s,
+ opacity .2s,
+ -webkit-box-flex .2s;
+  transition: flex-grow .2s,
+ opacity .2s;
+  transition: flex-grow .2s,
+ opacity .2s,
+ -webkit-box-flex .2s,
+ -ms-flex-positive .2s;
+}
+
+#wrap section:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  -webkit-transition: width .2s,
+ -webkit-transform .2s;
+  transition: width .2s,
+ -webkit-transform .2s;
+  transition: transform .2s,
+ width .2s;
+  transition: transform .2s,
+ width .2s,
+ -webkit-transform .2s;
+}
+
+#wrap section:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+}
+
+@media (min-width: 630px) {
+  #wrap section {
+    width: 20%;
+    height: 100vh;
+    margin-right: -1px;
+    -webkit-transform: skewX(15deg) translateZ(0);
+            transform: skewX(15deg) translateZ(0);
+  }
+  #wrap section:before {
+    left: -100%;
+    width: 400%;
+    -webkit-transform: skewX(-15deg);
+            transform: skewX(-15deg);
+  }
+}
+
+#wrap section:nth-child(1):before {
+  background-color: #e60000;
+  background-image: url(../main_img/인천_대청도_농여해변.png);
+}
+
+.hide-images #wrap section:nth-child(1):before {
+  background-image: none;
+}
+
+#wrap section:first-child:before, #wrap section:last-child:before {
+  background-color: #660000;
+}
+
+#wrap section:first-child:after, #wrap section:last-child:after {
+  opacity: .5;
+}
+
+#wrap section:first-child article, #wrap section:last-child article {
+  display: none;
+}
+
+#wrap section:nth-child(2):before {
+  background-color: #cc0000;
+  background-image: url(../main_img/충북_단양.png);
+}
+
+.hide-images #wrap section:nth-child(2):before {
+  background-image: none;
+}
+
+#wrap section:first-child:before, #wrap section:last-child:before {
+  background-color: #660000;
+}
+
+#wrap section:first-child:after, #wrap section:last-child:after {
+  opacity: .5;
+}
+
+#wrap section:first-child article, #wrap section:last-child article {
+  display: none;
+}
+
+#wrap section:nth-child(3):before {
+  background-color: #b30000;
+  background-image: url(../main_img/거제_해안거님길.png);
+}
+
+.hide-images #wrap section:nth-child(3):before {
+  background-image: none;
+}
+
+#wrap section:first-child:before, #wrap section:last-child:before {
+  background-color: #660000;
+}
+
+#wrap section:first-child:after, #wrap section:last-child:after {
+  opacity: .5;
+}
+
+#wrap section:first-child article, #wrap section:last-child article {
+  display: none;
+}
+
+#wrap section:nth-child(4):before {
+  background-color: #990000;
+  background-image: url(../main_img/충남_공주_한옥마을.png);
+}
+
+.hide-images #wrap section:nth-child(4):before {
+  background-image: none;
+}
+
+#wrap section:first-child:before, #wrap section:last-child:before {
+  background-color: #660000;
+}
+
+#wrap section:first-child:after, #wrap section:last-child:after {
+  opacity: .5;
+}
+
+#wrap section:first-child article, #wrap section:last-child article {
+  display: none;
+}
+
+#wrap section:nth-child(5):before {
+  background-color: maroon;
+  background-image: url(../main_img/가평_피노키오와다빈치.png);
+}
+
+.hide-images #wrap section:nth-child(5):before {
+  background-image: none;
+}
+
+#wrap section:first-child:before, #wrap section:last-child:before {
+  background-color: #660000;
+}
+
+#wrap section:first-child:after, #wrap section:last-child:after {
+  opacity: .5;
+}
+
+#wrap section:first-child article, #wrap section:last-child article {
+  display: none;
+}
+
+#wrap article {
+  position: relative;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  z-index: 1;
+  -webkit-transition: opacity .2s,
+ -webkit-transform .2s;
+  transition: opacity .2s,
+ -webkit-transform .2s;
+  transition: opacity .2s,
+ transform .2s;
+  transition: opacity .2s,
+ transform .2s,
+ -webkit-transform .2s;
+}
+
+@media (min-width: 630px) {
+  #wrap article {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    opacity: 0;
+    -webkit-transform: translateY(24px) skewX(-15deg);
+            transform: translateY(24px) skewX(-15deg);
+  }
+}
+
+#wrap h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+#wrap button {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  padding: 8px 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: white;
+  background-color: black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

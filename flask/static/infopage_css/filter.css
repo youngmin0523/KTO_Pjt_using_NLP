@@ -1,0 +1,48 @@
+.filterButtons{
+    border: 1px gray solid;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+*:focus {
+    outline: 0 !important;
+}
+.filterButtonBox{
+    position: relative;
+    left: 20%;
+    right: 20%;
+    top: 10px;
+}
+.filterBtn { 
+    outline: none;
+    width: 40px;
+    height: 40px;
+    line-height:40px;
+    border:1px gray solid;
+    border-radius: 50%;
+    background-color:white;
+    cursor: pointer;
+    transition:all 0.9s, color 0.3;
+    margin-right: 15px;
+    margin-left: 15px;
+ } 
+.filterBtn:hover{
+    color:rgba(85, 83, 83)
+    }
+.filterhover:hover{ 
+    box-shadow:200px 0 0 0 rgba(85, 83, 83, 0.5) inset;
+ }
+ .filterImg{
+     position: relative;
+     bottom: 3px;
+ }
+
+.markerFilter p{
+    position: relative;
+    top: -5px;
+}
+.markerFilter{
+    position: relative;
+    top: 420px;
+    z-index: 1;
+}

@@ -10,6 +10,14 @@
 - 이용자가 추구하는 여행 가치와 정보를 입력하면 사용자 맞춤형으로 품질인증 숙박 업소와 주변 관광지를 추천
 - 해당 업소에서 경험할 수 있는 키워드를 레이더 차트를 통해 시각적으로 제
 
+## 프로젝트 로드맵
+- 데이터 수집
+  - OTA, 한국관광공사 대한민국 구석구석
+- 데이터 분석
+  - TensorFlow, Keras, BERT
+- 웹 서비스 구현
+  - FLASK, mongDB, aws, kakaomap
+
 ## Install  
 - flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  
 - flask run  

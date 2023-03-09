@@ -1,4 +1,5 @@
-# 사용자 경험 기반 맞춤형 스마트 관광 추천 서비스 - 우주공감(우리가 주인공이 되어 공감하는 여행)
+# 사용자 경험 기반 맞춤형 스마트 관광 추천 서비스 
+- 우주공감(우리가 주인공이 되어 공감하는 여행)
 
 ## 프로젝트 목표
 - 코로나19 발병 후 국내 여행 숙박 예약 플랫폼 수요 추이는 꾸준히 증가하고 있다.
@@ -8,6 +9,10 @@
 -국가적으로 단일화된 관광 품질인증제도인 한국관광 품질인증제도에 대한 인식을 제고시키고 숙박 업소를 홍보
 - 이용자가 추구하는 여행 가치와 정보를 입력하면 사용자 맞춤형으로 품질인증 숙박 업소와 주변 관광지를 추천
 - 해당 업소에서 경험할 수 있는 키워드를 레이더 차트를 통해 시각적으로 제
+
+## Install  
+1. flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  
+1. flask run  
 
 ## 프로젝트 발표 자료
 
@@ -51,6 +56,4 @@
 ![image](https://user-images.githubusercontent.com/59672592/132983205-f7b40dd7-7bf5-4d02-a54e-a5355eb47f06.png)  
 ![image](https://user-images.githubusercontent.com/59672592/132983221-d8bc5b6b-d7c9-4bdb-b7ff-723e15b47baa.png)  
 ![image](https://user-images.githubusercontent.com/59672592/132983230-aff03f0b-9d45-4260-a802-a672a24c022e.png)  
-# Install  
-1. flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  
-1. flask run  
+

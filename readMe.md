@@ -18,6 +18,13 @@
 - 웹 서비스 구현
   - FLASK, mongDB, aws, kakaomap
 
+## 개발 환경
+- H/W Platform Requirements(AWS EC2)
+
+- SW Platform Requirements
+
+- Deep-Learning Requirements
+
 ## Install  
 - flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  
 - flask run  

@@ -22,8 +22,14 @@
 - H/W Platform Requirements(AWS EC2)
 
 - SW Platform Requirements
+  - HTML, CSS, js
+  - Flask
+  Mongo atlas
 
 - Deep-Learning Requirements
+  - 형태소 분석 : RhinoMorph
+  - tf-idf, wor2Vec
+  - RNN, CNN, KoBert
 
 ## Install  
 - flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  

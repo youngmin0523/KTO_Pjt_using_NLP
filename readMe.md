@@ -20,12 +20,15 @@
 
 ## 개발 환경
 - H/W Platform Requirements(AWS EC2)
-
+  - vCPU : 2
+  - RAM : 2GB
+  - Storage : 30GB
+  - OS : Linux
+  - Network : Connected to WAN over TCP/IP
 - SW Platform Requirements
   - HTML, CSS, js
   - Flask
-  Mongo atlas
-
+  - Mongo atlas
 - Deep-Learning Requirements
   - 형태소 분석 : RhinoMorph
   - tf-idf, wor2Vec

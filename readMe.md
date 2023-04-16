@@ -38,7 +38,20 @@
 - flask 가상환경 생성 후 가상환경 실행 후 pip install -r requirements.txt  
 - flask run  
 
-## 프로젝트 발표 자료
+# 구현 및 시연
+
+## 메인 페이지
+![image](https://user-images.githubusercontent.com/59672592/132982902-566d744f-2dcd-4e62-9719-0c2c177c19d8.png)  
+![image](https://user-images.githubusercontent.com/59672592/132982914-e5f97ac8-2d70-4c62-bdf0-a336e4c4c2e9.png)  
+![image](https://user-images.githubusercontent.com/59672592/132982927-2e130122-21f8-4b26-9323-e25ccddb052c.png)  
+---
+## 추천 결과 페이지  
+![image](https://user-images.githubusercontent.com/59672592/132983186-64282d70-af4a-4152-aba4-b2ac3961330c.png)  
+![image](https://user-images.githubusercontent.com/59672592/132983205-f7b40dd7-7bf5-4d02-a54e-a5355eb47f06.png)  
+![image](https://user-images.githubusercontent.com/59672592/132983221-d8bc5b6b-d7c9-4bdb-b7ff-723e15b47baa.png)  
+![image](https://user-images.githubusercontent.com/59672592/132983230-aff03f0b-9d45-4260-a802-a672a24c022e.png)  
+
+# 프로젝트 발표 자료
 
 ![image](https://user-images.githubusercontent.com/59672592/162621181-c1c9bb63-7feb-46c7-8faf-7ebd53b248a7.png)
 ![image](https://user-images.githubusercontent.com/59672592/162621208-a35b1389-4c71-4ad7-9c2f-16a3ab3904f1.png)
@@ -70,14 +83,4 @@
 ![image](https://user-images.githubusercontent.com/59672592/162621533-7ff01c4d-ec25-4434-924a-b5eb8c799414.png)
 ![image](https://user-images.githubusercontent.com/59672592/162621581-6fa47c97-a7b1-4138-9d56-749a2dbf5248.png)
 ![image](https://user-images.githubusercontent.com/59672592/162621634-471c4b08-786c-4937-9fbd-fb08c72c721e.png)
-# 메인 페이지
-![image](https://user-images.githubusercontent.com/59672592/132982902-566d744f-2dcd-4e62-9719-0c2c177c19d8.png)  
-![image](https://user-images.githubusercontent.com/59672592/132982914-e5f97ac8-2d70-4c62-bdf0-a336e4c4c2e9.png)  
-![image](https://user-images.githubusercontent.com/59672592/132982927-2e130122-21f8-4b26-9323-e25ccddb052c.png)  
----
-# 추천 결과 페이지  
-![image](https://user-images.githubusercontent.com/59672592/132983186-64282d70-af4a-4152-aba4-b2ac3961330c.png)  
-![image](https://user-images.githubusercontent.com/59672592/132983205-f7b40dd7-7bf5-4d02-a54e-a5355eb47f06.png)  
-![image](https://user-images.githubusercontent.com/59672592/132983221-d8bc5b6b-d7c9-4bdb-b7ff-723e15b47baa.png)  
-![image](https://user-images.githubusercontent.com/59672592/132983230-aff03f0b-9d45-4260-a802-a672a24c022e.png)  
 
